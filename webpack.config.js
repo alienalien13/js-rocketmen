@@ -27,7 +27,6 @@ module.exports = {
 	plugins: [
 		new HtmlPlugin({
 			template: PATHS.src + "/main.html",
-			title: "RocketMen ___ uu",
 			filename: "index.html"
 		})
 	]
