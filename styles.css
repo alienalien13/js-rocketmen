@@ -1,0 +1,51 @@
+body, #table, .buttonAdd, .buttonEdit {
+   margin: auto;
+   margin-top: 10px;
+}
+.wrap {
+   width: 50%;
+   margin-left: 25%;
+   margin-right: 25%;
+}
+.buttonAdd, .buttonEdit {
+   display: block;
+}
+.buttonAdd {
+   width: 171px;
+}
+.buttonEdit {
+   width: 58px;
+}
+#table, .row, .headOfTable2, .headOfTable3 {
+   border: 1px solid #b4b0bb;
+   padding: 10px;
+}
+#table {
+   border-collapse: collapse;
+   min-height: 50px;
+   min-width: 200px;
+   text-align: center;
+   font-family: 'Oswald', sans-serif; 
+}
+.row {
+   background: #d9d9d9;
+}
+.headOfTable2, .headOfTable3 {
+   background: #b3b0aa;
+
+}
+.headOfTable2 {
+   border-right: 1px solid black;
+}
+.name {
+    display: block;
+    width: 100px;
+}
+.textName::before {
+    content: "name";
+    font-size: 10px;
+    color: black;
+}
+.name::after {
+    content: "dfdffd";
+}
