@@ -1,3 +1,5 @@
+import "./styles.css"
+
 function addText(comment, onOf) { //zadani informace do tabulky
    var text = prompt(comment),
       textToUpper;
