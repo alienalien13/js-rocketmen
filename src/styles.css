@@ -1,51 +1,66 @@
-body, #table, .buttonAdd, .buttonEdit {
-   margin: auto;
-   margin-top: 10px;
+body, .wrap, #table, .buttonAdd {
+	margin: auto;
 }
 .wrap {
-   width: 50%;
-   margin-left: 25%;
-   margin-right: 25%;
+	width: 400px;
 }
-.buttonAdd, .buttonEdit {
-   display: block;
+.form {
+	padding: 10px;
+}
+#divName, #divBirth {
+	float: left;
+}
+#divSurname, #divSuper {
+	float: right;
 }
 .buttonAdd {
-   width: 171px;
+	margin-bottom: 10px;
+	display: block;
+	width: 120px
 }
-.buttonEdit {
-   width: 58px;
-}
-#table, .row, .headOfTable2, .headOfTable3 {
-   border: 1px solid #b4b0bb;
-   padding: 10px;
+#table, .row {
+	border: 1px solid #b4b0bb;
+	padding: 10px;
 }
 #table {
-   border-collapse: collapse;
-   min-height: 50px;
-   min-width: 200px;
-   text-align: center;
-   font-family: 'Oswald', sans-serif; 
+	border-collapse: collapse;
+	min-height: 50px;
+	min-width: 200px;
+	text-align: center;
+	font-family: 'Oswald', sans-serif; 
 }
 .row {
-   background: #d9d9d9;
+	background: #d9d9d9;
 }
-.headOfTable2, .headOfTable3 {
-   background: #b3b0aa;
+.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {
+	background: #b3b0aa;
+	border-right: 1px solid black;
+	padding: 5px;
+}
+.headOfTable5 {
+	padding: 5px;
+	background: #b3b0aa;
+}
 
+/*
+
+NAMES BEFORE FORMS
+
+*/
+
+.form::before {
+	font-size: 15px;
+	color: black;
 }
-.headOfTable2 {
-   border-right: 1px solid black;
+#divName::before {
+	content: "Name:"
 }
-.name {
-    display: block;
-    width: 100px;
+#divSurname::before {
+	content: "Surname:"
 }
-.textName::before {
-    content: "name";
-    font-size: 10px;
-    color: black;
+#divBirth::before {
+	content: "BirthDate:"
 }
-.name::after {
-    content: "dfdffd";
+#divSuper::before {
+	content: "Super ability:"
 }

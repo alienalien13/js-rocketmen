@@ -8,6 +8,7 @@
     "**/.DS_Store": true,
     "node_modules": true,
     "yarn.lock": true,
-    ".vscode": true
+    ".vscode": true,
+    ".gitignore": true
   }
 }

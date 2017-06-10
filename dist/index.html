@@ -6,18 +6,21 @@
 </head>
 <body>
 	<div class="wrap">
-		<div class="textName"><input type="text" class="name"></div>
-		<div class="textLastname"><input type="text" class="lastname"></div>
-		<div class="birth"><input type="text" class="birth"></div>
-		<div class="superabil"><input type="text" class="superabil"></div>
-		<p class="buttonAdd"><input type="button" value="Přidat nového kosmonauta" onclick="addRow('table');return false;"></p>
+		<div class="formsWrap">
+			<div class="form" id="divName"><input type="text" id="name"></div>
+			<div class="form" id="divSurname"><input type="text" id="lastname"></div>
+			<div class="form" id="divBirth"><input type="date" id="birth"></div>
+			<div class="form" id="divSuper"><input type="text" id="superabil"></div>
+		</div>
+		<p class="buttonAdd"><input type="button" value="Add Rocketman"></p>
 		<table id="table" border="1">
 			<tbody>
 				<tr>
-					<td class="headOfTable2">Jméno</td>
-					<td class="headOfTable2">Příjmení</td>
-					<td class="headOfTable2">Datum narození</td>
-					<td class="headOfTable2">Superschopnost</td>
+					<td class="headOfTable1">Name</td>
+					<td class="headOfTable2">Surname</td>
+					<td class="headOfTable3">Birthday</td>
+					<td class="headOfTable4">Superpower</td>
+					<td class="headOfTable5">-----</td>
 				</tr>
 			</tbody>
 		</table>

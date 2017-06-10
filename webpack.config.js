@@ -28,6 +28,15 @@ module.exports = {
 		new HtmlPlugin({
 			template: PATHS.src + "/main.html",
 			filename: "index.html"
+		}),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
 		})
-	]
+	],
+	devServer: {
+		contentBase: path.join(__dirname, "dist"),
+		watchContentBase: true,
+		port: 9000
+	}
 }

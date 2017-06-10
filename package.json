@@ -6,13 +6,17 @@
   "license": "MIT",
   "scripts": {
     "dev": "yarn rimraf ./dist && webpack --env development",
-    "prod": "webpack --env production"
+    "watch": "yarn rimraf ./dist && webpack --env development --watch",
+    "prod": "webpack --env production",
+    "serv": "webpack-dev-server"
   },
   "devDependencies": {
     "css-loader": "^0.28.4",
     "html-webpack-plugin": "^2.28.0",
+    "jquery": "^3.2.1",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
-    "webpack": "^2.6.1"
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }
