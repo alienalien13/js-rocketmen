@@ -63,92 +63,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_css__);
-
-
-var buttonAdd = document.getElementById('buttonAdd'),
-	regLatin = /^[a-zA-Z]+$/;
-var objForms = {
-	nameForm: document.getElementById('name'),
-	lastnameForm: document.getElementById('lastname'),
-	birthForm: document.getElementById('birth'),
-	superabilForm: document.getElementById('superabil'),
-	getValues: function(){
-		return {
-			name: this.nameForm.value,
-			lastname: this.lastnameForm.value,
-			birth: this.birthForm.value,
-			superabil: this.superabilForm.value
-		}
-	}
-}
-var validateLatin = function(option){
-		return regLatin.test(option);
-}
-var newRow = function(values){
-	
-}
-
-var rows = []
-
-function putValues(name, lastname, birth, superabil) {
-	this.name = name;
-	this.lastname = lastname;
-	this.birth = birth;
-	this.superabil = superabil;
-}
-
-var AddRocketman = () => {
-	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues().birth !== '' && objForms.getValues().superabil !== ''){
-		
-		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
-		
-		//создать новый ряд в таблице (вызов функции)
-
-		for (let option in objForms.getValues()){
-			let form = document.getElementById(option);
-			form.style.background = 'none';
-		}
-		console.log(rows)
-	} else {
-		for (let option in objForms.getValues()){
-			let form = document.getElementById(option);
-			form.style.background = 'none';
-			if (validateLatin(objForms.getValues()[option]) === false){
-				form.style.background = 'red';
-				if (option === 'birth' && objForms.getValues()[option] !== ''){
-					form.style.background = 'none';
-				} else if (option === 'superabil' && objForms.getValues()[option] !== '') {
-					form.style.background = 'none';
-				}
-				console.log(option);
-			}
-		}
-	}
-}
-
-buttonAdd.onclick = AddRocketman;
-
-//функция которая пробегает по всем элементам массива rows и для каждого создаёт новую строку в таблице
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(2);
+var content = __webpack_require__(1);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -156,7 +81,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
+var update = __webpack_require__(3)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -173,21 +98,21 @@ if(false) {
 }
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\n}\r\n.wrap {\r\n\twidth: 400px;\r\n}\r\n.form {\r\n\tpadding: 10px;\r\n}\r\n#divName, #divBirth {\r\n\tfloat: left;\r\n}\r\n#divSurname, #divSuper {\r\n\tfloat: right;\r\n}\r\n.buttonAdd {\r\n\tmargin-bottom: 10px;\r\n\tdisplay: block;\r\n\twidth: 120px\r\n}\r\n#table, .row {\r\n\tborder: 1px solid #b4b0bb;\r\n\tpadding: 10px;\r\n}\r\n#table {\r\n\tborder-collapse: collapse;\r\n\tmin-height: 50px;\r\n\tmin-width: 200px;\r\n\ttext-align: center;\r\n\tfont-family: 'Oswald', sans-serif; \r\n}\r\n.row {\r\n\tbackground: #d9d9d9;\r\n}\r\n.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {\r\n\tbackground: #b3b0aa;\r\n\tborder-right: 1px solid black;\r\n\tpadding: 5px;\r\n}\r\n.headOfTable5 {\r\n\tpadding: 5px;\r\n\tbackground: #b3b0aa;\r\n}\r\n\r\n/*\r\n\r\nNAMES BEFORE FORMS\r\n\r\n*/\r\n\r\n.form::before {\r\n\tfont-size: 15px;\r\n\tcolor: black;\r\n}\r\n#divName::before {\r\n\tcontent: \"Name:\"\r\n}\r\n#divSurname::before {\r\n\tcontent: \"Surname:\"\r\n}\r\n#divBirth::before {\r\n\tcontent: \"BirthDate:\"\r\n}\r\n#divSuper::before {\r\n\tcontent: \"Super ability:\"\r\n}", ""]);
+exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\n}\r\n.wrap {\r\n\twidth: 50%;\r\n}\r\n.form {\r\n\tpadding: 5px;\r\n}\r\n#divName, #divBirth ,#divSurname, #divSuper {\r\n\twidth: 200px;\r\n\tmargin: auto;\r\n}\r\n#name, #birth ,#lastname, #superabil {\r\n\twidth: 200px;\r\n}\r\n.buttonAdd {\r\n\tmargin-bottom: 5px;\r\n\tdisplay: block;\r\n\twidth: 105px;\r\n}\r\n#table, .row {\r\n\tborder: 1px solid #b4b0bb;\r\n\tpadding: 10px;\r\n}\r\n#table {\r\n\tborder-collapse: collapse;\r\n\tmin-height: 50px;\r\n\tmin-width: 200px;\r\n\ttext-align: center;\r\n\tfont-family: 'Oswald', sans-serif; \r\n}\r\n.row {\r\n\tbackground: #d9d9d9;\r\n}\r\n.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {\r\n\tbackground: #b3b0aa;\r\n\tborder-right: 1px solid black;\r\n\tpadding: 5px;\r\n}\r\n.headOfTable5 {\r\n\tpadding: 5px;\r\n\tbackground: #b3b0aa;\r\n}\r\n\r\n/*\r\n\r\nNAMES BEFORE FORMS\r\n\r\n*/\r\n\r\n.form::before {\r\n\tfont-size: 15px;\r\n\tcolor: black;\r\n}\r\n#divName::before {\r\n\tcontent: \"Name:\"\r\n}\r\n#divSurname::before {\r\n\tcontent: \"Surname:\"\r\n}\r\n#divBirth::before {\r\n\tcontent: \"Birthday:\"\r\n}\r\n#divSuper::before {\r\n\tcontent: \"Superpower:\"\r\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /*
@@ -269,7 +194,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -315,7 +240,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(5);
+var	fixUrls = __webpack_require__(4);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -628,7 +553,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 
@@ -721,6 +646,97 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_css__);
+
+
+var buttonAdd = document.getElementById('buttonAdd'),
+	regLatin = /^[a-zA-Z]+$/;
+var objForms = {
+	nameForm: document.getElementById('name'),
+	lastnameForm: document.getElementById('lastname'),
+	birthForm: document.getElementById('birth'),
+	superabilForm: document.getElementById('superabil'),
+	getValues: function(){
+		return {
+			name: this.nameForm.value,
+			lastname: this.lastnameForm.value,
+			birth: this.birthForm.value,
+			superabil: this.superabilForm.value
+		}
+	}
+}
+var validateLatin = function(option){
+		return regLatin.test(option);
+}
+var newRow = function(rowValues){
+	var tableContent = document.getElementById('tableContent'),
+		tr = document.createElement('tr'),
+		tdName = document.createElement('td'),
+		tdLastname = document.createElement('td'),
+		tdBirth = document.createElement('td'),
+		tdSuperpower = document.createElement('td'),
+		tdButtons = document.createElement('td');
+		
+	tableContent.appendChild(tr);
+	tr.appendChild(tdName);
+	tr.appendChild(tdLastname);
+	tr.appendChild(tdBirth);
+	tr.appendChild(tdSuperpower);
+	tr.appendChild(tdButtons);
+	tdName.innerHTML = rowValues.name[0].toUpperCase() + rowValues.name.substr(1).toLowerCase();
+	tdLastname.innerHTML = rowValues.lastname[0].toUpperCase() + rowValues.lastname.substr(1).toLowerCase();
+	tdBirth.innerHTML = rowValues.birth;
+	tdSuperpower.innerHTML = rowValues.superabil;
+	tdButtons.innerHTML = "buttons";
+}
+
+var rows = []
+
+function putValues(name, lastname, birth, superabil) {
+	this.name = name;
+	this.lastname = lastname;
+	this.birth = birth;
+	this.superabil = superabil;
+}
+
+var AddRocketman = () => {
+	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues().birth !== '' && objForms.getValues().superabil !== ''){
+		
+		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
+		
+		newRow(rows[rows.length - 1]); //создать новый ряд в таблице
+
+		for (let option in objForms.getValues()){
+			let form = document.getElementById(option);
+			form.style.background = 'none';
+		}
+		console.log(rows)
+	} else {
+		for (let option in objForms.getValues()){
+			let form = document.getElementById(option);
+			form.style.background = 'none';
+			if (validateLatin(objForms.getValues()[option]) === false){
+				form.style.background = 'red';
+				if (option === 'birth' && objForms.getValues()[option] !== ''){
+					form.style.background = 'none';
+				} else if (option === 'superabil' && objForms.getValues()[option] !== '') {
+					form.style.background = 'none';
+				}
+				console.log(option);
+			}
+		}
+	}
+}
+
+buttonAdd.onclick = AddRocketman;
 
 /***/ })
 /******/ ]);

@@ -19,8 +19,26 @@ var objForms = {
 var validateLatin = function(option){
 		return regLatin.test(option);
 }
-var newRow = function(values){
-	
+var newRow = function(rowValues){
+	var tableContent = document.getElementById('tableContent'),
+		tr = document.createElement('tr'),
+		tdName = document.createElement('td'),
+		tdLastname = document.createElement('td'),
+		tdBirth = document.createElement('td'),
+		tdSuperpower = document.createElement('td'),
+		tdButtons = document.createElement('td');
+		
+	tableContent.appendChild(tr);
+	tr.appendChild(tdName);
+	tr.appendChild(tdLastname);
+	tr.appendChild(tdBirth);
+	tr.appendChild(tdSuperpower);
+	tr.appendChild(tdButtons);
+	tdName.innerHTML = rowValues.name[0].toUpperCase() + rowValues.name.substr(1).toLowerCase();
+	tdLastname.innerHTML = rowValues.lastname[0].toUpperCase() + rowValues.lastname.substr(1).toLowerCase();
+	tdBirth.innerHTML = rowValues.birth;
+	tdSuperpower.innerHTML = rowValues.superabil;
+	tdButtons.innerHTML = "buttons";
 }
 
 var rows = []
@@ -37,7 +55,7 @@ var AddRocketman = () => {
 		
 		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
 		
-		//создать новый ряд в таблице (вызов функции)
+		newRow(rows[rows.length - 1]); //создать новый ряд в таблице
 
 		for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
@@ -62,5 +80,3 @@ var AddRocketman = () => {
 }
 
 buttonAdd.onclick = AddRocketman;
-
-//функция которая пробегает по всем элементам массива rows и для каждого создаёт новую строку в таблице
