@@ -63,17 +63,89 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_css__);
+
+
+var buttonAdd = document.getElementById('buttonAdd'),
+	regLatin = /^[a-zA-Z]+$/;
+var objForms = {
+	nameForm: document.getElementById('name'),
+	lastnameForm: document.getElementById('lastname'),
+	birthForm: document.getElementById('birth'),
+	superabilForm: document.getElementById('superabil'),
+	getValues: function(){
+		return {
+			name: this.nameForm.value,
+			lastname: this.lastnameForm.value,
+			birth: this.birthForm.value,
+			superabil: this.superabilForm.value
+		}
+	}
+}
+var validateLatin = function(option){
+		return regLatin.test(option);
+}
+
+var rows = []
+
+function putValues(name, lastname, birth, superabil) {
+	this.name = name;
+	this.lastname = lastname;
+	this.birth = birth;
+	this.superabil = superabil;
+}
+
+var counter = 1;
+
+var lol = () => {
+	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues()[birth] !== '' && objForms.getValues()[superabil] !== ''){
+		counter++;
+		
+		var values = new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil);
+		rows.push(values);
+
+		for (let option in objForms.getValues()){
+			let form = document.getElementById(option);
+			form.style.background = 'none';
+		}
+		console.log(rows)
+	} else {
+		for (let option in objForms.getValues()){
+			let form = document.getElementById(option);
+			form.style.background = 'none';
+			if (validateLatin(objForms.getValues()[option]) === false){
+				form.style.background = 'red';
+				if (option === 'birth' && objForms.getValues()[option] !== ''){
+					form.style.background = 'none';
+				} else if (option === 'superabil' && objForms.getValues()[option] !== '') {
+					form.style.background = 'none';
+				}
+				console.log(option);
+			}
+		}
+	}
+}
+
+buttonAdd.onclick = lol;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(1);
+var content = __webpack_require__(2);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -81,7 +153,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(4)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -98,10 +170,10 @@ if(false) {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -112,7 +184,7 @@ exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -194,7 +266,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -240,7 +312,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(4);
+var	fixUrls = __webpack_require__(5);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -553,7 +625,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 
@@ -646,73 +718,6 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_css__);
-
-
-var buttonAdd = document.getElementById('buttonAdd'),
-	regLatin = /^[a-zA-Z]+$/;
-
-var objForms = {
-	nameForm: document.getElementById('name'),
-	lastnameForm: document.getElementById('lastname'),
-	birthForm: document.getElementById('birth'),
-	superabilForm: document.getElementById('superabil'),
-	getValues: function(){
-		return {
-			name: this.nameForm.value,
-			lastname: this.lastnameForm.value,
-			birth: this.birthForm.value,
-			superabil: this.superabilForm.value
-		}
-	}
-}
-var validateLatin = function(option){
-		return regLatin.test(option);
-	}
-var values = {
-	name: '',
-	lastname: '',
-	birth: '',
-	superabil: ''
-}
-
-
-
-var lol = () => { //потом эта функция принимает объект в котором будет возиться, сначала это данные форм, потом это буду данные уже заполненной таблицы (для эдитации)
-	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues()[birth] !== '' && objForms.getValues()[superabil] !== ''){
-		values.name = objForms.getValues().name;
-		values.lastname = objForms.getValues().lastname;
-		values.birth = objForms.getValues().birth;
-		values.superabil = objForms.getValues().superabil;
-		for (let option in objForms.getValues()){
-			let form = document.getElementById(option);
-			form.style.background = 'none';
-		}
-		console.log(values)
-	} else {
-		for (let option in objForms.getValues()){
-			let form = document.getElementById(option);
-			form.style.background = 'none';
-			if (validateLatin(objForms.getValues()[option]) === false){
-				form.style.background = 'red';
-				if (option === 'birth' && objForms.getValues()[option] !== ''){
-					form.style.background = 'none';
-				}
-				console.log(option);
-			}
-		}
-	}
-}
-
-buttonAdd.onclick = lol;
 
 /***/ })
 /******/ ]);
