@@ -19,6 +19,9 @@ var objForms = {
 var validateLatin = function(option){
 		return regLatin.test(option);
 }
+var newRow = function(values){
+	
+}
 
 var rows = []
 
@@ -29,14 +32,12 @@ function putValues(name, lastname, birth, superabil) {
 	this.superabil = superabil;
 }
 
-var counter = 1;
-
-var lol = () => {
-	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues()[birth] !== '' && objForms.getValues()[superabil] !== ''){
-		counter++;
+var AddRocketman = () => {
+	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues().birth !== '' && objForms.getValues().superabil !== ''){
 		
-		var values = new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil);
-		rows.push(values);
+		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
+		
+		//создать новый ряд в таблице (вызов функции)
 
 		for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
@@ -60,4 +61,6 @@ var lol = () => {
 	}
 }
 
-buttonAdd.onclick = lol;
+buttonAdd.onclick = AddRocketman;
+
+//функция которая пробегает по всем элементам массива rows и для каждого создаёт новую строку в таблице
