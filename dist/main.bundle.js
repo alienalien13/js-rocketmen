@@ -658,8 +658,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var buttonAdd = document.getElementById('buttonAdd'),
-	regLatin = /^[a-zA-Z]+$/;
-var objForms = {
+	regLatin = /^[a-zA-Z]+$/,
+	rows = [],
+	objForms = {
 	nameForm: document.getElementById('name'),
 	lastnameForm: document.getElementById('lastname'),
 	birthForm: document.getElementById('birth'),
@@ -673,32 +674,53 @@ var objForms = {
 		}
 	}
 }
+
 var validateLatin = function(option){
 		return regLatin.test(option);
 }
-var newRow = function(rowValues){
+/*function edition(rowNumer){
+	console.log(rows.rowNumer);
+}*/
+var newRow = function(rowMassive, rowValues){
 	var tableContent = document.getElementById('tableContent'),
 		tr = document.createElement('tr'),
 		tdName = document.createElement('td'),
 		tdLastname = document.createElement('td'),
 		tdBirth = document.createElement('td'),
 		tdSuperpower = document.createElement('td'),
-		tdButtons = document.createElement('td');
-		
+		tdButtons = document.createElement('td'),
+		editButton = document.createElement('input'),
+		removeButton = document.createElement('input');
+
+	tr.setAttribute('id', 'row' + (rowMassive.length - 1));
 	tableContent.appendChild(tr);
 	tr.appendChild(tdName);
 	tr.appendChild(tdLastname);
 	tr.appendChild(tdBirth);
 	tr.appendChild(tdSuperpower);
 	tr.appendChild(tdButtons);
+
+	editButton.setAttribute('type', 'button');
+	editButton.setAttribute('value', 'Edit');
+	//editButton.setAttribute('onclick', 'alert(' + (rowMassive.length - 1) + ')'); //функция которая будет получать номер этого ряда
+	//editButton.setAttribute('onclick', 'edition(' + (rowMassive.length - 1) + ')');
+	editButton.onclick = function(){
+		console.log(editButton.parentNode.parentNode.id);
+		//console.log(rowMassive[rowMassive.length - 1]);
+	}
+	
+	removeButton.setAttribute('type', 'button');
+	removeButton.setAttribute('value', "Remove");
+
+	tdButtons.appendChild(editButton);
+	tdButtons.appendChild(removeButton);
+
 	tdName.innerHTML = rowValues.name[0].toUpperCase() + rowValues.name.substr(1).toLowerCase();
 	tdLastname.innerHTML = rowValues.lastname[0].toUpperCase() + rowValues.lastname.substr(1).toLowerCase();
 	tdBirth.innerHTML = rowValues.birth;
 	tdSuperpower.innerHTML = rowValues.superabil;
-	tdButtons.innerHTML = "buttons";
+	//rowMassive.length - 1
 }
-
-var rows = []
 
 function putValues(name, lastname, birth, superabil) {
 	this.name = name;
@@ -712,13 +734,13 @@ var AddRocketman = () => {
 		
 		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
 		
-		newRow(rows[rows.length - 1]); //создать новый ряд в таблице
+		var n = rows.length - 1;
+		newRow(rows, rows[n]); //создать новый ряд в таблице
 
 		for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
 			form.style.background = 'none';
 		}
-		console.log(rows)
 	} else {
 		for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
@@ -730,7 +752,6 @@ var AddRocketman = () => {
 				} else if (option === 'superabil' && objForms.getValues()[option] !== '') {
 					form.style.background = 'none';
 				}
-				console.log(option);
 			}
 		}
 	}
