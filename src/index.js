@@ -21,9 +21,6 @@ var buttonAdd = document.getElementById('buttonAdd'),
 var validateLatin = function(option){
 		return regLatin.test(option);
 }
-/*function edition(rowNumer){
-	console.log(rows.rowNumer);
-}*/
 var newRow = function(rowMassive, rowValues){
 	var tableContent = document.getElementById('tableContent'),
 		tr = document.createElement('tr'),
@@ -36,6 +33,7 @@ var newRow = function(rowMassive, rowValues){
 		removeButton = document.createElement('input');
 
 	tr.setAttribute('id', 'row' + (rowMassive.length - 1));
+	//tdName.setAttribute('id', 'name' + (rowMassive.length - 1));
 	tableContent.appendChild(tr);
 	tr.appendChild(tdName);
 	tr.appendChild(tdLastname);
@@ -45,11 +43,12 @@ var newRow = function(rowMassive, rowValues){
 
 	editButton.setAttribute('type', 'button');
 	editButton.setAttribute('value', 'Edit');
-	//editButton.setAttribute('onclick', 'alert(' + (rowMassive.length - 1) + ')'); //функция которая будет получать номер этого ряда
-	//editButton.setAttribute('onclick', 'edition(' + (rowMassive.length - 1) + ')');
 	editButton.onclick = function(){
-		console.log(editButton.parentNode.parentNode.id);
-		//console.log(rowMassive[rowMassive.length - 1]);
+		var parentRow = editButton.parentNode.parentNode,
+			parentRowId = parentRow.id,
+			number = parentRowId.substr(length - 1);
+		//console.log(parentRow, parentRowId);
+		console.log(number);
 	}
 	
 	removeButton.setAttribute('type', 'button');
@@ -62,7 +61,6 @@ var newRow = function(rowMassive, rowValues){
 	tdLastname.innerHTML = rowValues.lastname[0].toUpperCase() + rowValues.lastname.substr(1).toLowerCase();
 	tdBirth.innerHTML = rowValues.birth;
 	tdSuperpower.innerHTML = rowValues.superabil;
-	//rowMassive.length - 1
 }
 
 function putValues(name, lastname, birth, superabil) {
