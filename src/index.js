@@ -167,9 +167,9 @@ var AddRocketman = () => {
 		}
 	}
 	
-	/*for (let i in objForms){
+	for (let i in objForms){
 		objForms[i].value = '';
-	}*/
+	}
 }
 
 buttonAdd.onclick = AddRocketman;
