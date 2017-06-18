@@ -30,6 +30,9 @@ body, .wrap, #table, .buttonAdd {
 	text-align: center;
 	font-family: 'Oswald', sans-serif; 
 }
+#table input {
+	width: 90%;
+}
 .row {
 	background: #d9d9d9;
 }
@@ -65,3 +68,5 @@ NAMES BEFORE FORMS
 #divSuper::before {
 	content: "Superpower:"
 }
+
+/* ===  ===  ===  === */

@@ -106,7 +106,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\n}\r\n.wrap {\r\n\twidth: 50%;\r\n}\r\n.form {\r\n\tpadding: 5px;\r\n}\r\n#divName, #divBirth ,#divSurname, #divSuper {\r\n\twidth: 200px;\r\n\tmargin: auto;\r\n}\r\n#name, #birth ,#lastname, #superabil {\r\n\twidth: 200px;\r\n}\r\n.buttonAdd {\r\n\tmargin-bottom: 5px;\r\n\tdisplay: block;\r\n\twidth: 105px;\r\n}\r\n#table, .row {\r\n\tborder: 1px solid #b4b0bb;\r\n\tpadding: 10px;\r\n}\r\n#table {\r\n\tborder-collapse: collapse;\r\n\tmin-height: 50px;\r\n\tmin-width: 200px;\r\n\ttext-align: center;\r\n\tfont-family: 'Oswald', sans-serif; \r\n}\r\n.row {\r\n\tbackground: #d9d9d9;\r\n}\r\n.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {\r\n\tbackground: #b3b0aa;\r\n\tborder-right: 1px solid black;\r\n\tpadding: 5px;\r\n}\r\n.headOfTable5 {\r\n\tpadding: 5px;\r\n\tbackground: #b3b0aa;\r\n}\r\n\r\n/*\r\n\r\nNAMES BEFORE FORMS\r\n\r\n*/\r\n\r\n.form::before {\r\n\tfont-size: 15px;\r\n\tcolor: black;\r\n}\r\n#divName::before {\r\n\tcontent: \"Name:\"\r\n}\r\n#divSurname::before {\r\n\tcontent: \"Surname:\"\r\n}\r\n#divBirth::before {\r\n\tcontent: \"Birthday:\"\r\n}\r\n#divSuper::before {\r\n\tcontent: \"Superpower:\"\r\n}", ""]);
+exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\n}\r\n.wrap {\r\n\twidth: 50%;\r\n}\r\n.form {\r\n\tpadding: 5px;\r\n}\r\n#divName, #divBirth ,#divSurname, #divSuper {\r\n\twidth: 200px;\r\n\tmargin: auto;\r\n}\r\n#name, #birth ,#lastname, #superabil {\r\n\twidth: 200px;\r\n}\r\n.buttonAdd {\r\n\tmargin-bottom: 5px;\r\n\tdisplay: block;\r\n\twidth: 105px;\r\n}\r\n#table, .row {\r\n\tborder: 1px solid #b4b0bb;\r\n\tpadding: 10px;\r\n}\r\n#table {\r\n\tborder-collapse: collapse;\r\n\tmin-height: 50px;\r\n\tmin-width: 200px;\r\n\ttext-align: center;\r\n\tfont-family: 'Oswald', sans-serif; \r\n}\r\n#table input {\r\n\twidth: 90%;\r\n}\r\n.row {\r\n\tbackground: #d9d9d9;\r\n}\r\n.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {\r\n\tbackground: #b3b0aa;\r\n\tborder-right: 1px solid black;\r\n\tpadding: 5px;\r\n}\r\n.headOfTable5 {\r\n\tpadding: 5px;\r\n\tbackground: #b3b0aa;\r\n}\r\n\r\n/*\r\n\r\nNAMES BEFORE FORMS\r\n\r\n*/\r\n\r\n.form::before {\r\n\tfont-size: 15px;\r\n\tcolor: black;\r\n}\r\n#divName::before {\r\n\tcontent: \"Name:\"\r\n}\r\n#divSurname::before {\r\n\tcontent: \"Surname:\"\r\n}\r\n#divBirth::before {\r\n\tcontent: \"Birthday:\"\r\n}\r\n#divSuper::before {\r\n\tcontent: \"Superpower:\"\r\n}\r\n\r\n/* ===  ===  ===  === */\r\n", ""]);
 
 // exports
 
@@ -701,11 +701,42 @@ var newRow = function(rowMassive, rowValues){
 	editButton.setAttribute('type', 'button');
 	editButton.setAttribute('value', 'Edit');
 	editButton.onclick = function(){
-		var parentRow = editButton.parentNode.parentNode,
+		//кнопка эдит исчезнет, вместо неё появится кнопка "ок"
+		let parentRow = editButton.parentNode.parentNode,
 			parentRowId = parentRow.id,
-			number = parentRowId.substr(length - 1);
-		//console.log(parentRow, parentRowId);
-		console.log(number);
+			number = parentRowId.substr(length - 1),
+			name = parentRow.childNodes[0],
+			lastname = parentRow.childNodes[1],
+			birth = parentRow.childNodes[2],
+			superabil = parentRow.childNodes[3],
+			buttons = parentRow.childNodes[4],
+			okButton = document.createElement('input'),
+			nameEdit = document.createElement('input'),
+			lastnameEdit = document.createElement('input'),
+			birthEdit = document.createElement('input'),
+			superabilEdit = document.createElement('input');
+		
+		editButton.style.display = 'none';
+		buttons.insertBefore(okButton, buttons.childNodes[1]);
+		okButton.setAttribute('type', 'button');
+		okButton.setAttribute('value', 'Ok');
+		nameEdit.setAttribute('type', 'text');
+		lastnameEdit.setAttribute('type', 'text');
+		birthEdit.setAttribute('type', 'date');
+		superabilEdit.setAttribute('type', 'text');
+		parentRow.childNodes[0].innerHTML = '';
+		parentRow.childNodes[0].appendChild(nameEdit);
+		parentRow.childNodes[0].childNodes[0].setAttribute('value', rows[number].name);
+		parentRow.childNodes[1].innerHTML = '';
+		parentRow.childNodes[1].appendChild(lastnameEdit);
+		parentRow.childNodes[1].childNodes[0].setAttribute('value', rows[number].lastname);
+		parentRow.childNodes[2].innerHTML = '';
+		parentRow.childNodes[2].appendChild(birthEdit);
+		parentRow.childNodes[2].childNodes[0].setAttribute('value', rows[number].birth);
+		parentRow.childNodes[3].innerHTML = '';
+		parentRow.childNodes[3].appendChild(superabilEdit);
+		parentRow.childNodes[3].childNodes[0].setAttribute('value', rows[number].superabil);
+		
 	}
 	
 	removeButton.setAttribute('type', 'button');

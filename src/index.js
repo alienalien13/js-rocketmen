@@ -44,11 +44,42 @@ var newRow = function(rowMassive, rowValues){
 	editButton.setAttribute('type', 'button');
 	editButton.setAttribute('value', 'Edit');
 	editButton.onclick = function(){
-		var parentRow = editButton.parentNode.parentNode,
+		//кнопка эдит исчезнет, вместо неё появится кнопка "ок"
+		let parentRow = editButton.parentNode.parentNode,
 			parentRowId = parentRow.id,
-			number = parentRowId.substr(length - 1);
-		//console.log(parentRow, parentRowId);
-		console.log(number);
+			number = parentRowId.substr(length - 1),
+			name = parentRow.childNodes[0],
+			lastname = parentRow.childNodes[1],
+			birth = parentRow.childNodes[2],
+			superabil = parentRow.childNodes[3],
+			buttons = parentRow.childNodes[4],
+			okButton = document.createElement('input'),
+			nameEdit = document.createElement('input'),
+			lastnameEdit = document.createElement('input'),
+			birthEdit = document.createElement('input'),
+			superabilEdit = document.createElement('input');
+		
+		editButton.style.display = 'none';
+		buttons.insertBefore(okButton, buttons.childNodes[1]);
+		okButton.setAttribute('type', 'button');
+		okButton.setAttribute('value', 'Ok');
+		nameEdit.setAttribute('type', 'text');
+		lastnameEdit.setAttribute('type', 'text');
+		birthEdit.setAttribute('type', 'date');
+		superabilEdit.setAttribute('type', 'text');
+		parentRow.childNodes[0].innerHTML = '';
+		parentRow.childNodes[0].appendChild(nameEdit);
+		parentRow.childNodes[0].childNodes[0].setAttribute('value', rows[number].name);
+		parentRow.childNodes[1].innerHTML = '';
+		parentRow.childNodes[1].appendChild(lastnameEdit);
+		parentRow.childNodes[1].childNodes[0].setAttribute('value', rows[number].lastname);
+		parentRow.childNodes[2].innerHTML = '';
+		parentRow.childNodes[2].appendChild(birthEdit);
+		parentRow.childNodes[2].childNodes[0].setAttribute('value', rows[number].birth);
+		parentRow.childNodes[3].innerHTML = '';
+		parentRow.childNodes[3].appendChild(superabilEdit);
+		parentRow.childNodes[3].childNodes[0].setAttribute('value', rows[number].superabil);
+		
 	}
 	
 	removeButton.setAttribute('type', 'button');
