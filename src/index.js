@@ -4,23 +4,24 @@ var buttonAdd = document.getElementById('buttonAdd'),
 	regLatin = /^[a-zA-Z]+$/,
 	rows = [],
 	objForms = {
-	nameForm: document.getElementById('name'),
-	lastnameForm: document.getElementById('lastname'),
-	birthForm: document.getElementById('birth'),
-	superabilForm: document.getElementById('superabil'),
-	getValues: function(){
-		return {
-			name: this.nameForm.value,
-			lastname: this.lastnameForm.value,
-			birth: this.birthForm.value,
-			superabil: this.superabilForm.value
-		}
+		nameForm: document.getElementById('name'),
+		lastnameForm: document.getElementById('lastname'),
+		birthForm: document.getElementById('birth'),
+		superabilForm: document.getElementById('superabil'),
+		getValues: function(){
+			return {
+				name: this.nameForm.value,
+				lastname: this.lastnameForm.value,
+				birth: this.birthForm.value,
+				superabil: this.superabilForm.value
+			}
 	}
 }
 
 var validateLatin = function(option){
 		return regLatin.test(option);
 }
+
 var newRow = function(rowMassive, rowValues){
 	var tableContent = document.getElementById('tableContent'),
 		tr = document.createElement('tr'),
@@ -33,7 +34,6 @@ var newRow = function(rowMassive, rowValues){
 		removeButton = document.createElement('input');
 
 	tr.setAttribute('id', 'row' + (rowMassive.length - 1));
-	//tdName.setAttribute('id', 'name' + (rowMassive.length - 1));
 	tableContent.appendChild(tr);
 	tr.appendChild(tdName);
 	tr.appendChild(tdLastname);
@@ -44,7 +44,7 @@ var newRow = function(rowMassive, rowValues){
 	editButton.setAttribute('type', 'button');
 	editButton.setAttribute('value', 'Edit');
 	editButton.onclick = function(){
-		//кнопка эдит исчезнет, вместо неё появится кнопка "ок"
+
 		let parentRow = editButton.parentNode.parentNode,
 			parentRowId = parentRow.id,
 			number = parentRowId.substr(length - 1),
@@ -60,6 +60,7 @@ var newRow = function(rowMassive, rowValues){
 			superabilEdit = document.createElement('input');
 		
 		editButton.style.display = 'none';
+		removeButton.style.display = 'none';
 		buttons.insertBefore(okButton, buttons.childNodes[1]);
 		okButton.setAttribute('type', 'button');
 		okButton.setAttribute('value', 'Ok');
@@ -70,24 +71,58 @@ var newRow = function(rowMassive, rowValues){
 		superabilEdit.setAttribute('type', 'text');
 		name.innerHTML = '';
 		name.appendChild(nameEdit);
-		name.childNodes[0].setAttribute('value', rows[number].name);
+		nameEdit.setAttribute('value', rows[number].name);
 		lastname.innerHTML = '';
 		lastname.appendChild(lastnameEdit);
-		lastname.childNodes[0].setAttribute('value', rows[number].lastname);
+		lastnameEdit.setAttribute('value', rows[number].lastname);
 		birth.innerHTML = '';
 		birth.appendChild(birthEdit);
-		birth.childNodes[0].setAttribute('value', rows[number].birth);
+		birthEdit.setAttribute('value', rows[number].birth);
 		superabil.innerHTML = '';
 		superabil.appendChild(superabilEdit);
-		superabil.childNodes[0].setAttribute('value', rows[number].superabil);
+		superabilEdit.setAttribute('value', rows[number].superabil);
 		
 		okButton.onclick = function(){
-			console.log(nameEdit.value)
+
+			if (validateLatin(nameEdit.value) && validateLatin(lastnameEdit.value) && birthEdit.value !== '' && superabilEdit.value !== ''){
+				name.innerHTML = rows[number].name = nameEdit.value[0].toUpperCase() + nameEdit.value.substr(1).toLowerCase();
+				lastname.innerHTML = rows[number].lastname = lastnameEdit.value[0].toUpperCase() + lastnameEdit.value.substr(1).toLowerCase();
+				birth.innerHTML = rows[number].birth = birthEdit.value;
+				superabil.innerHTML = rows[number].superabil = superabilEdit.value;
+				buttons.removeChild(okButton);
+				editButton.style.display = 'inline-block';
+				removeButton.style.display = 'inline-block';
+				console.log(rows[number]);
+			} else {
+				let formsEdit = [nameEdit, lastnameEdit, birthEdit, superabilEdit]
+				for (let i in formsEdit){
+					formsEdit[i].style.background = 'none';
+					if (!validateLatin(formsEdit[i].value)){
+						formsEdit[i].style.background = 'red';
+						if ( (formsEdit[i] === birthEdit && formsEdit[i].value !== '') || (formsEdit[i] === superabilEdit && formsEdit[i].value !== '') ){
+							formsEdit[i].style.background = 'none';
+						}
+					}
+				}
+			}
 		}
 	}
 	
 	removeButton.setAttribute('type', 'button');
 	removeButton.setAttribute('value', "Remove");
+	removeButton.onclick = function(){
+		if (confirm("Do you want to remove " + tdName.innerHTML + " " + tdLastname.innerHTML + " ?")){
+			let parentRow = editButton.parentNode.parentNode,
+			parentRowId = parentRow.id,
+			number = parentRowId.substr(length - 1);
+
+			tableContent.removeChild(parentRow);
+			//rows.splice(number, number);
+			//усовершенствовать код чтобы все айди рядов после удаляемого уменьшались на 1
+			delete rows[number];
+			console.log(rows);
+		}
+	}
 
 	tdButtons.appendChild(editButton);
 	tdButtons.appendChild(removeButton);
@@ -106,7 +141,7 @@ function putValues(name, lastname, birth, superabil) {
 }
 
 var AddRocketman = () => {
-	if (validateLatin(objForms.getValues().name) === true && validateLatin(objForms.getValues().lastname) === true && objForms.getValues().birth !== '' && objForms.getValues().superabil !== ''){
+	if (validateLatin(objForms.getValues().name) && validateLatin(objForms.getValues().lastname) && objForms.getValues().birth !== '' && objForms.getValues().superabil !== ''){
 		
 		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
 		
@@ -121,7 +156,7 @@ var AddRocketman = () => {
 		for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
 			form.style.background = 'none';
-			if (validateLatin(objForms.getValues()[option]) === false){
+			if (!validateLatin(objForms.getValues()[option])){
 				form.style.background = 'red';
 				if (option === 'birth' && objForms.getValues()[option] !== ''){
 					form.style.background = 'none';
@@ -131,6 +166,10 @@ var AddRocketman = () => {
 			}
 		}
 	}
+	
+	/*for (let i in objForms){
+		objForms[i].value = '';
+	}*/
 }
 
 buttonAdd.onclick = AddRocketman;
