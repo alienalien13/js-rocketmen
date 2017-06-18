@@ -720,23 +720,27 @@ var newRow = function(rowMassive, rowValues){
 		buttons.insertBefore(okButton, buttons.childNodes[1]);
 		okButton.setAttribute('type', 'button');
 		okButton.setAttribute('value', 'Ok');
+
 		nameEdit.setAttribute('type', 'text');
 		lastnameEdit.setAttribute('type', 'text');
 		birthEdit.setAttribute('type', 'date');
 		superabilEdit.setAttribute('type', 'text');
-		parentRow.childNodes[0].innerHTML = '';
-		parentRow.childNodes[0].appendChild(nameEdit);
-		parentRow.childNodes[0].childNodes[0].setAttribute('value', rows[number].name);
-		parentRow.childNodes[1].innerHTML = '';
-		parentRow.childNodes[1].appendChild(lastnameEdit);
-		parentRow.childNodes[1].childNodes[0].setAttribute('value', rows[number].lastname);
-		parentRow.childNodes[2].innerHTML = '';
-		parentRow.childNodes[2].appendChild(birthEdit);
-		parentRow.childNodes[2].childNodes[0].setAttribute('value', rows[number].birth);
-		parentRow.childNodes[3].innerHTML = '';
-		parentRow.childNodes[3].appendChild(superabilEdit);
-		parentRow.childNodes[3].childNodes[0].setAttribute('value', rows[number].superabil);
+		name.innerHTML = '';
+		name.appendChild(nameEdit);
+		name.childNodes[0].setAttribute('value', rows[number].name);
+		lastname.innerHTML = '';
+		lastname.appendChild(lastnameEdit);
+		lastname.childNodes[0].setAttribute('value', rows[number].lastname);
+		birth.innerHTML = '';
+		birth.appendChild(birthEdit);
+		birth.childNodes[0].setAttribute('value', rows[number].birth);
+		superabil.innerHTML = '';
+		superabil.appendChild(superabilEdit);
+		superabil.childNodes[0].setAttribute('value', rows[number].superabil);
 		
+		okButton.onclick = function(){
+			console.log(nameEdit.value)
+		}
 	}
 	
 	removeButton.setAttribute('type', 'button');
