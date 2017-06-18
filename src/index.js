@@ -148,9 +148,13 @@ var AddRocketman = () => {
 		var n = rows.length - 1;
 		newRow(rows, rows[n]); //создать новый ряд в таблице
 
-		for (let option in objForms.getValues()){
+		/*for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
 			form.style.background = 'none';
+		}*/
+		for (let i in objForms){
+			objForms[i].value = '';
+			objForms[i].style.background = 'none';
 		}
 	} else {
 		for (let option in objForms.getValues()){
@@ -165,10 +169,6 @@ var AddRocketman = () => {
 				}
 			}
 		}
-	}
-	
-	for (let i in objForms){
-		objForms[i].value = '';
 	}
 }
 

@@ -106,7 +106,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\n}\r\n.wrap {\r\n\twidth: 50%;\r\n}\r\n.form {\r\n\tpadding: 5px;\r\n}\r\n#divName, #divBirth ,#divSurname, #divSuper {\r\n\twidth: 200px;\r\n\tmargin: auto;\r\n}\r\n#name, #birth ,#lastname, #superabil {\r\n\twidth: 200px;\r\n}\r\n.buttonAdd {\r\n\tmargin-bottom: 5px;\r\n\tdisplay: block;\r\n\twidth: 105px;\r\n}\r\n#table, .row {\r\n\tborder: 1px solid #b4b0bb;\r\n\tpadding: 10px;\r\n}\r\n#table {\r\n\tborder-collapse: collapse;\r\n\tmin-height: 50px;\r\n\tmin-width: 200px;\r\n\ttext-align: center;\r\n\tfont-family: 'Oswald', sans-serif; \r\n}\r\n#table input {\r\n\twidth: 90%;\r\n}\r\n.row {\r\n\tbackground: #d9d9d9;\r\n}\r\n.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {\r\n\tbackground: #b3b0aa;\r\n\tborder-right: 1px solid black;\r\n\tpadding: 5px;\r\n}\r\n.headOfTable5 {\r\n\tpadding: 5px;\r\n\tbackground: #b3b0aa;\r\n}\r\n\r\n/*\r\n\r\nNAMES BEFORE FORMS\r\n\r\n*/\r\n\r\n.form::before {\r\n\tfont-size: 15px;\r\n\tcolor: black;\r\n}\r\n#divName::before {\r\n\tcontent: \"Name:\"\r\n}\r\n#divSurname::before {\r\n\tcontent: \"Surname:\"\r\n}\r\n#divBirth::before {\r\n\tcontent: \"Birthday:\"\r\n}\r\n#divSuper::before {\r\n\tcontent: \"Superpower:\"\r\n}\r\n\r\n/* ===  ===  ===  === */\r\n", ""]);
+exports.push([module.i, "body, .wrap, #table, .buttonAdd {\r\n\tmargin: auto;\r\n}\r\n.wrap {\r\n\twidth: 50%;\r\n}\r\n.form {\r\n\tpadding: 5px;\r\n}\r\n#divName, #divBirth ,#divSurname, #divSuper {\r\n\twidth: 200px;\r\n\tmargin: auto;\r\n}\r\n#name, #birth ,#lastname, #superabil {\r\n\twidth: 200px;\r\n}\r\n.buttonAdd {\r\n\tmargin-bottom: 5px;\r\n\tdisplay: block;\r\n\twidth: 105px;\r\n}\r\n#table, .row {\r\n\tborder: 1px solid #b4b0bb;\r\n\tpadding: 10px;\r\n}\r\n#table {\r\n\tborder-collapse: collapse;\r\n\t/*min-height: 50px;*/\r\n\tmin-width: 200px;\r\n\ttext-align: center;\r\n\tfont-family: 'Oswald', sans-serif; \r\n}\r\n#table input {\r\n\twidth: 90%;\r\n}\r\n.row {\r\n\tbackground: #d9d9d9;\r\n}\r\n.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {\r\n\tbackground: #b3b0aa;\r\n\tborder-right: 1px solid black;\r\n\tpadding: 5px;\r\n}\r\n.headOfTable5 {\r\n\tpadding: 5px;\r\n\tbackground: #b3b0aa;\r\n}\r\n\r\n/*\r\n\r\nNAMES BEFORE FORMS\r\n\r\n*/\r\n\r\n.form::before {\r\n\tfont-size: 15px;\r\n\tcolor: black;\r\n}\r\n#divName::before {\r\n\tcontent: \"Name:\"\r\n}\r\n#divSurname::before {\r\n\tcontent: \"Surname:\"\r\n}\r\n#divBirth::before {\r\n\tcontent: \"Birthday:\"\r\n}\r\n#divSuper::before {\r\n\tcontent: \"Superpower:\"\r\n}\r\n\r\n/* ===  ===  ===  === */\r\n", ""]);
 
 // exports
 
@@ -805,9 +805,13 @@ var AddRocketman = () => {
 		var n = rows.length - 1;
 		newRow(rows, rows[n]); //создать новый ряд в таблице
 
-		for (let option in objForms.getValues()){
+		/*for (let option in objForms.getValues()){
 			let form = document.getElementById(option);
 			form.style.background = 'none';
+		}*/
+		for (let i in objForms){
+			objForms[i].value = '';
+			objForms[i].style.background = 'none';
 		}
 	} else {
 		for (let option in objForms.getValues()){
@@ -823,10 +827,6 @@ var AddRocketman = () => {
 			}
 		}
 	}
-	
-	/*for (let i in objForms){
-		objForms[i].value = '';
-	}*/
 }
 
 buttonAdd.onclick = AddRocketman;
