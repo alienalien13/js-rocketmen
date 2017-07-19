@@ -1,72 +1,38 @@
-body, .wrap, #table, .buttonAdd {
-	margin: auto;
-}
-.wrap {
-	width: 50%;
-}
-.form {
-	padding: 5px;
-}
-#divName, #divBirth ,#divSurname, #divSuper {
-	width: 200px;
-	margin: auto;
-}
-#name, #birth ,#lastname, #superabil {
-	width: 200px;
-}
-.buttonAdd {
-	margin-bottom: 5px;
-	display: block;
-	width: 105px;
-}
-#table, .row {
-	border: 1px solid #b4b0bb;
-	padding: 10px;
-}
-#table {
-	border-collapse: collapse;
-	/*min-height: 50px;*/
-	min-width: 200px;
+header{
+	background-color: rgba(200, 200, 200, 0.2);
+	margin-bottom: 15px;
 	text-align: center;
-	font-family: 'Oswald', sans-serif; 
+	padding: 3rem;
 }
-#table input {
+aside input{
+	width: 100%;
+	margin-bottom: 10px;
+}
+#tableContent input{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+#tableContent input[type='text'], #tableContent input[type='date']{
 	width: 90%;
+	margin: 19px 5px;
 }
-.row {
-	background: #d9d9d9;
+#tableContent input[value='Ok']{
+	width: 80px;
 }
-.headOfTable1, .headOfTable2, .headOfTable3, .headOfTable4 {
-	background: #b3b0aa;
-	border-right: 1px solid black;
-	padding: 5px;
+#tableContent input[type='date']{
+	width: 130px;
 }
-.headOfTable5 {
-	padding: 5px;
-	background: #b3b0aa;
+.birthTd{
+	width: 5.4em;
+	min-width: 5.4em;
 }
-
-/*
-
-NAMES BEFORE FORMS
-
-*/
-
-.form::before {
-	font-size: 15px;
-	color: black;
+.fa-rocket{
+	font-size: 3em;
 }
-#divName::before {
-	content: "Name:"
+.fa-rocket::before{
+	font-size: 2.5em;
 }
-#divSurname::before {
-	content: "Surname:"
+.color-col, td input[type='button']{
+	background-color: rgba(200, 200, 200, 0.2)
 }
-#divBirth::before {
-	content: "Birthday:"
-}
-#divSuper::before {
-	content: "Superpower:"
-}
-
-/* ===  ===  ===  === */

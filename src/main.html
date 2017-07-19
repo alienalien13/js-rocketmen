@@ -1,29 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta charset="UTF-8">
 	<title>RocketMen</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-	<div class="wrap">
-		<div class="formsWrap">
-			<div class="form" id="divName"><input type="text" id="name"></div>
-			<div class="form" id="divSurname"><input type="text" id="lastname"></div>
-			<div class="form" id="divBirth"><input type="date" id="birth"></div>
-			<div class="form" id="divSuper"><input type="text" id="superabil"></div>
+
+	<header class="section row">
+		<div class="container">
+				<div class="fa fa-rocket fa-5x">
+					<div class="not">&ensp;Rocketmen list</div>
+				</div>
 		</div>
-		<p class="buttonAdd" id="buttonAdd"><input type="button" value="Add Rocketman"></p>
-		<table id="table" border="1">
-			<tbody id="tableContent">
-				<tr>
-					<td class="headOfTable1">Name</td>
-					<td class="headOfTable2">Surname</td>
-					<td class="headOfTable3">Birthday</td>
-					<td class="headOfTable4">Superpower</td>
-					<td class="headOfTable5">-----</td>
-				</tr>
-			</tbody>
-		</table>
+	</header>
+
+	<div class="container">
+
+		<div class="row">
+
+			<aside class="form four columns">
+
+				<input type="text" placeholder="Name" id="name">
+				<input type="text" placeholder="Surname" id="lastname">
+				<input type="date" placeholder="Birthday" id="birth">
+				<input type="text" placeholder="Superpower" id="superabil">
+				<input class="buttonAdd" id="buttonAdd" type="button" value="Add Rocketman">
+
+			</aside>
+
+			<article class="eight columns">
+
+				<table id="table" class="u-full-width">
+
+					<thead>
+						<tr>
+							<th class="headOfTable1">Name</th>
+							<th class="headOfTable2">Surname</th>
+							<th class="headOfTable3">Birthday</th>
+							<th class="headOfTable4">Superpower</th>
+							<th class="headOfTable5"></th>
+						</tr>
+					</thead>
+
+					<tbody id="tableContent">
+						
+					</tbody>
+
+				</table>
+
+			</article>
+			
+		</div>
+
 	</div>
 </body>
 </html>

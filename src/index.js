@@ -1,4 +1,6 @@
 import "./styles.css"
+import "./skeleton/skeleton.css"
+import "./skeleton/normalize.css"
 
 var buttonAdd = document.getElementById('buttonAdd'),
 	regLatin = /^[a-zA-Z]+$/,
@@ -35,14 +37,20 @@ var newRow = function(rowMassive, rowValues){
 
 	tr.setAttribute('id', 'row' + (rowMassive.length - 1));
 	tableContent.appendChild(tr);
+	//tdButtons.setAttribute('class', 'row');
 	tr.appendChild(tdName);
 	tr.appendChild(tdLastname);
 	tr.appendChild(tdBirth);
 	tr.appendChild(tdSuperpower);
 	tr.appendChild(tdButtons);
 
+	/* tdLastname.setAttribute('class', 'color-col');
+	tdSuperpower.setAttribute('class', 'color-col'); */
+	tdName.setAttribute('class', 'color-col');
+	tdBirth.setAttribute('class', 'color-col birthTd');
 	editButton.setAttribute('type', 'button');
 	editButton.setAttribute('value', 'Edit');
+	editButton.setAttribute('class', 'five columns')
 	editButton.onclick = function(){
 
 		let parentRow = editButton.parentNode.parentNode,
@@ -98,7 +106,7 @@ var newRow = function(rowMassive, rowValues){
 				for (let i in formsEdit){
 					formsEdit[i].style.background = 'none';
 					if (!validateLatin(formsEdit[i].value)){
-						formsEdit[i].style.background = 'red';
+						formsEdit[i].style.background = '#ff7d7d';
 						if ( (formsEdit[i] === birthEdit && formsEdit[i].value !== '') || (formsEdit[i] === superabilEdit && formsEdit[i].value !== '') ){
 							formsEdit[i].style.background = 'none';
 						}
@@ -110,6 +118,7 @@ var newRow = function(rowMassive, rowValues){
 	
 	removeButton.setAttribute('type', 'button');
 	removeButton.setAttribute('value', "Remove");
+	removeButton.setAttribute('class', 'five columns')
 	removeButton.onclick = function(){
 		if (confirm("Do you want to remove " + tdName.innerHTML + " " + tdLastname.innerHTML + " ?")){
 			let parentRow = editButton.parentNode.parentNode,
@@ -161,7 +170,7 @@ var AddRocketman = () => {
 			let form = document.getElementById(option);
 			form.style.background = 'none';
 			if (!validateLatin(objForms.getValues()[option])){
-				form.style.background = 'red';
+				form.style.background = '#ff7d7d';
 				if (option === 'birth' && objForms.getValues()[option] !== ''){
 					form.style.background = 'none';
 				} else if (option === 'superabil' && objForms.getValues()[option] !== '') {
@@ -173,3 +182,22 @@ var AddRocketman = () => {
 }
 
 buttonAdd.onclick = AddRocketman;
+
+window.onload = function(){
+
+	rows.push(new putValues('Yuri', 'Gagarin', '1934-03-09', 'He was the first human to journey into outer space'))
+	let n = rows.length - 1;
+	newRow(rows, rows[n]);
+
+	rows.push(new putValues('Alan', 'Shepard', '1923-11-18', 'He became the second person, and the first American, to travel into space, and the first person to manually control the orientation of his spacecraft'))
+	let nn = rows.length - 1;
+	newRow(rows, rows[nn]);
+
+	rows.push(new putValues('Neil', 'Armstrong', '1930-08-05', 'Armstrong&rsquo;s second and last spaceflight was as commander of Apollo 11, the first manned Moon landing mission in July 1969'))
+	let nnn = rows.length - 1;
+	newRow(rows, rows[nnn]);
+
+	rows.push(new putValues('Vladimír ', 'Remek ', '1948-09-26', 'Remek is considered to be the first astronaut from the European Union'))
+	let nnnn = rows.length - 1;
+	newRow(rows, rows[nnnn]);
+}
