@@ -35,17 +35,14 @@ var newRow = function(rowMassive, rowValues){
 		editButton = document.createElement('input'),
 		removeButton = document.createElement('input');
 
-	tr.setAttribute('id', 'row' + (rowMassive.length - 1));
+	tr.setAttribute('id', 'row' + (rowMassive.length - 1)); //New row in the table
 	tableContent.appendChild(tr);
-	//tdButtons.setAttribute('class', 'row');
 	tr.appendChild(tdName);
 	tr.appendChild(tdLastname);
 	tr.appendChild(tdBirth);
 	tr.appendChild(tdSuperpower);
 	tr.appendChild(tdButtons);
 
-	/* tdLastname.setAttribute('class', 'color-col');
-	tdSuperpower.setAttribute('class', 'color-col'); */
 	tdName.setAttribute('class', 'color-col');
 	tdBirth.setAttribute('class', 'color-col birthTd');
 	editButton.setAttribute('type', 'button');
@@ -90,7 +87,7 @@ var newRow = function(rowMassive, rowValues){
 		superabil.appendChild(superabilEdit);
 		superabilEdit.setAttribute('value', rows[number].superabil);
 		
-		okButton.onclick = function(){
+		okButton.onclick = function(){ //Commit changes
 
 			if (validateLatin(nameEdit.value) && validateLatin(lastnameEdit.value) && birthEdit.value !== '' && superabilEdit.value !== ''){
 				name.innerHTML = rows[number].name = nameEdit.value[0].toUpperCase() + nameEdit.value.substr(1).toLowerCase();
@@ -119,6 +116,7 @@ var newRow = function(rowMassive, rowValues){
 	removeButton.setAttribute('type', 'button');
 	removeButton.setAttribute('value', "Remove");
 	removeButton.setAttribute('class', 'five columns')
+
 	removeButton.onclick = function(){
 		if (confirm("Do you want to remove " + tdName.innerHTML + " " + tdLastname.innerHTML + " ?")){
 			let parentRow = editButton.parentNode.parentNode,
@@ -126,8 +124,6 @@ var newRow = function(rowMassive, rowValues){
 			number = parentRowId.substr(length - 1);
 
 			tableContent.removeChild(parentRow);
-			//rows.splice(number, number);
-			//усовершенствовать код чтобы все айди рядов после удаляемого уменьшались на 1
 			delete rows[number];
 			console.log(rows);
 		}
@@ -142,7 +138,7 @@ var newRow = function(rowMassive, rowValues){
 	tdSuperpower.innerHTML = rowValues.superabil;
 }
 
-function putValues(name, lastname, birth, superabil) {
+function putValues(name, lastname, birth, superabil) { //new rocketman constructor function
 	this.name = name;
 	this.lastname = lastname;
 	this.birth = birth;
@@ -155,12 +151,8 @@ var AddRocketman = () => {
 		rows.push(new putValues(objForms.getValues().name, objForms.getValues().lastname, objForms.getValues().birth, objForms.getValues().superabil));
 		
 		var n = rows.length - 1;
-		newRow(rows, rows[n]); //создать новый ряд в таблице
+		newRow(rows, rows[n]); //Design new row in the DOM
 
-		/*for (let option in objForms.getValues()){
-			let form = document.getElementById(option);
-			form.style.background = 'none';
-		}*/
 		for (let i in objForms){
 			objForms[i].value = '';
 			objForms[i].style.background = 'none';
@@ -183,7 +175,7 @@ var AddRocketman = () => {
 
 buttonAdd.onclick = AddRocketman;
 
-window.onload = function(){
+window.onload = function(){ //Init adding some rocketmen
 
 	rows.push(new putValues('Yuri', 'Gagarin', '1934-03-09', 'He was the first human to journey into outer space'))
 	let n = rows.length - 1;
